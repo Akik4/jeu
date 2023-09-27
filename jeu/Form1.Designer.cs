@@ -114,7 +114,7 @@ namespace jeu
             label1.Enabled = false;
             label1.Font = new Font("hades", 94.8F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.White;
-            label1.Location = new Point(214, 24);
+            label1.Location = new Point(214, 9);
             label1.Name = "label1";
             label1.Size = new Size(396, 132);
             label1.TabIndex = 6;
@@ -137,6 +137,7 @@ namespace jeu
             button1.Text = "Continue";
             button1.UseVisualStyleBackColor = true;
             button1.Visible = false;
+            button1.Click += button1_Click;
             button1.MouseEnter += button1_MouseEnter;
             button1.MouseLeave += button1_MouseLeave;
             // 

@@ -219,5 +219,10 @@ namespace jeu
         {
             button1.ForeColor = Color.White;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            fonctionEchap();
+        }
     }
 }
