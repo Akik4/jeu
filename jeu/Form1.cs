@@ -40,7 +40,7 @@ namespace jeu
             button2.Enabled = false;
         }
 
-       
+
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Z)

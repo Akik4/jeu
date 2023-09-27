@@ -90,6 +90,7 @@ namespace jeu
             // 
             // button2
             // 
+            button2.Anchor = AnchorStyles.None;
             button2.Enabled = false;
             button2.Font = new Font("hades", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             button2.ForeColor = SystemColors.ButtonFace;
@@ -107,6 +108,7 @@ namespace jeu
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Enabled = false;
@@ -122,6 +124,7 @@ namespace jeu
             // 
             // button1
             // 
+            button1.Anchor = AnchorStyles.None;
             button1.Enabled = false;
             button1.Font = new Font("hades", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = SystemColors.Control;
