@@ -16,7 +16,31 @@ namespace jeu
         Boolean zKey, dKey, qKey, sKey;
         List<PictureBox> enemy = new List<PictureBox> { };
         List<Label> enemyHP = new List<Label> { };
+        System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
 
+        public void fonctionEchap()
+        {
+            if (!label1.Visible)
+            {
+                label1.Visible = true;
+                button1.Visible = true;
+                button2.Visible = true;
+                label1.Enabled = true;
+                button1.Enabled = true;
+                button2.Enabled = true;
+                timer1.Stop();
+                return;
+            }
+            timer1.Start();
+            label1.Visible = false;
+            button1.Visible = false;
+            button2.Visible = false;
+            label1.Enabled = false;
+            button1.Enabled = false;
+            button2.Enabled = false;
+        }
+
+       
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Z)
@@ -37,16 +61,16 @@ namespace jeu
             }
             if (e.KeyCode == Keys.Escape)
             {
-                Application.Exit();
+                fonctionEchap();
             }
-            if(e.KeyCode == Keys.L)
+            if (e.KeyCode == Keys.L)
             {
                 Control y = new Ennemy().Spawn(Player);
                 enemy.Add((PictureBox)y);
                 Controls.Add(y);
 
             }
-            if(e.KeyCode == Keys.R)
+            if (e.KeyCode == Keys.R)
             {
                 enemy.ForEach(l =>
                 {
@@ -78,8 +102,7 @@ namespace jeu
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
-            timer1.Interval = (60); // 10 secs
+            timer1.Interval = (20); // 10 secs
             timer1.Tick += new EventHandler(timer_Tick);
             timer1.Start();
         }
@@ -89,13 +112,13 @@ namespace jeu
             playerMove();
 
             enemyBrain(enemy1);
-            if(enemy.Count > 0)
+            if (enemy.Count > 0)
             {
                 enemy.ForEach(l =>
                 {
                     enemyBrain(l);
                 });
-                
+
             }
 
 
@@ -170,6 +193,31 @@ namespace jeu
 
                 enemy1.Location = new Point(enemy1.Location.X + speedX, enemy1.Location.Y + speedY);
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_MouseEnter(object sender, EventArgs e)
+        {
+            button2.ForeColor = Color.Black;
+        }
+
+        private void button2_MouseLeave(object sender, EventArgs e)
+        {
+            button2.ForeColor = Color.White;
+        }
+
+        private void button1_MouseEnter(object sender, EventArgs e)
+        {
+            button1.ForeColor = Color.Black;
+        }
+
+        private void button1_MouseLeave(object sender, EventArgs e)
+        {
+            button1.ForeColor = Color.White;
         }
     }
 }

@@ -35,6 +35,9 @@ namespace jeu
             enemy1 = new PictureBox();
             enemyHP1 = new Label();
             piece = new PictureBox();
+            button2 = new Button();
+            label1 = new Label();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)Player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)enemy1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)piece).BeginInit();
@@ -85,6 +88,55 @@ namespace jeu
             piece.TabStop = false;
             piece.Visible = false;
             // 
+            // button2
+            // 
+            button2.Enabled = false;
+            button2.Font = new Font("hades", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            button2.ForeColor = SystemColors.ButtonFace;
+            button2.Image = Resources.IMG_20230926_181814_removebg_preview;
+            button2.Location = new Point(274, 260);
+            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Name = "button2";
+            button2.Size = new Size(259, 74);
+            button2.TabIndex = 5;
+            button2.Text = "Quit";
+            button2.UseVisualStyleBackColor = true;
+            button2.Visible = false;
+            button2.MouseEnter += button2_MouseEnter;
+            button2.MouseLeave += button2_MouseLeave;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.BackColor = Color.Transparent;
+            label1.Enabled = false;
+            label1.Font = new Font("hades", 94.8F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(214, 24);
+            label1.Name = "label1";
+            label1.Size = new Size(396, 132);
+            label1.TabIndex = 6;
+            label1.Text = "Pause";
+            label1.Visible = false;
+            label1.Click += label1_Click;
+            // 
+            // button1
+            // 
+            button1.Enabled = false;
+            button1.Font = new Font("hades", 25.8000011F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = SystemColors.Control;
+            button1.Image = Resources.IMG_20230926_181814_removebg_preview;
+            button1.Location = new Point(274, 182);
+            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Name = "button1";
+            button1.Size = new Size(259, 74);
+            button1.TabIndex = 7;
+            button1.Text = "Continue";
+            button1.UseVisualStyleBackColor = true;
+            button1.Visible = false;
+            button1.MouseEnter += button1_MouseEnter;
+            button1.MouseLeave += button1_MouseLeave;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -92,6 +144,9 @@ namespace jeu
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 450);
+            Controls.Add(button1);
+            Controls.Add(label1);
+            Controls.Add(button2);
             Controls.Add(piece);
             Controls.Add(enemyHP1);
             Controls.Add(enemy1);
@@ -117,5 +172,8 @@ namespace jeu
         public PictureBox enemy1;
         private Label enemyHP1;
         private PictureBox piece;
+        private Button button2;
+        private Label label1;
+        private Button button1;
     }
 }

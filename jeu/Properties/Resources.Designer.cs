@@ -59,5 +59,15 @@ namespace jeu.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap IMG_20230926_181814_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("IMG_20230926_181814-removebg-preview", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
