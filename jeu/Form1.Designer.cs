@@ -103,6 +103,7 @@ namespace jeu
             button2.Text = "Quit";
             button2.UseVisualStyleBackColor = true;
             button2.Visible = false;
+            button2.Click += button2_Click;
             button2.MouseEnter += button2_MouseEnter;
             button2.MouseLeave += button2_MouseLeave;
             // 
