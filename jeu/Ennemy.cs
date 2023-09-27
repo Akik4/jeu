@@ -1,5 +1,7 @@
-﻿using System;
+﻿using jeu.Properties;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -11,6 +13,9 @@ namespace jeu
     internal class Ennemy : Form
     {
         private PictureBox enemya = new PictureBox();
+        private Label enemyHP = new Label();
+        private PictureBox coin = new PictureBox();
+
         public Control Spawn(PictureBox Player)
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
@@ -26,41 +31,37 @@ namespace jeu
 
             return enemya;
         }
-        public static void Move(PictureBox Player, PictureBox enemya)
+        public Control Hp()
         {
-            int dx = Player.Location.X - enemya.Location.X;
-            int dy = Player.Location.Y - enemya.Location.Y;
-            int speedX = 0;
-            int speedY = 0;
+            enemyHP.AutoSize = true;
+            enemyHP.BackColor = Color.Transparent;
+            enemyHP.ForeColor = SystemColors.ActiveCaptionText;
+            enemyHP.Location = new Point(56, 185);
+            enemyHP.Margin = new Padding(2, 0, 2, 0);
+            enemyHP.Name = "enemyHP1";
+            enemyHP.Size = new Size(25, 15);
+            enemyHP.TabIndex = 2;
+            enemyHP.Text = "100";
 
-            if (dx > 0)
-            {
-                speedX = 3;
-            }
-            else
-            {
-                speedX = -3;
-            }
-            if (dy > 0)
-            {
-                speedY = 3;
-            }
-            else
-            {
-                speedY = -3;
-            }
+            return enemyHP;
 
-            enemya.Location = new Point(enemya.Location.X + speedX, enemya.Location.Y + speedY);
         }
 
-        internal static void Move(PictureBox player, object first)
+        public Control DropCoin(int x, int y)
         {
-            throw new NotImplementedException();
-        }
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 
-        internal static void Move(PictureBox player, Func<Control> first)
-        {
-            throw new NotImplementedException();
+            coin.BackColor = Color.Transparent;
+            coin.Image = (Image)resources.GetObject("pictureBox1.Image");
+            coin.Location = new Point(x, y);
+            coin.Margin = new Padding(2);
+            coin.Name = "piece";
+            coin.Size = new Size(21, 19);
+            coin.TabIndex = 3;
+            coin.TabStop = false;
+            coin.Visible = true;
+
+            return coin;
         }
     }
 }
