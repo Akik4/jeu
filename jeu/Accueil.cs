@@ -50,7 +50,7 @@ namespace jeu
         {
             Form1 t = new Form1();
             t.Show();
-            
+
         }
     }
 }

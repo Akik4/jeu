@@ -41,10 +41,9 @@
             button2.Font = new Font("hades", 48F, FontStyle.Regular, GraphicsUnit.Point);
             button2.ForeColor = SystemColors.ButtonHighlight;
             button2.Image = (Image)resources.GetObject("button2.Image");
-            button2.Location = new Point(630, 316);
-            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Location = new Point(720, 421);
             button2.Name = "button2";
-            button2.Size = new Size(334, 82);
+            button2.Size = new Size(382, 127);
             button2.TabIndex = 2;
             button2.Text = "Start";
             button2.UseVisualStyleBackColor = true;
@@ -59,10 +58,9 @@
             button1.Font = new Font("hades", 48F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = SystemColors.Control;
             button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(630, 457);
-            button1.Margin = new Padding(3, 2, 3, 2);
+            button1.Location = new Point(720, 609);
             button1.Name = "button1";
-            button1.Size = new Size(334, 79);
+            button1.Size = new Size(382, 124);
             button1.TabIndex = 3;
             button1.Text = "Quit";
             button1.UseVisualStyleBackColor = false;
@@ -78,26 +76,25 @@
             label2.FlatStyle = FlatStyle.Flat;
             label2.Font = new Font("hades", 140.25F, FontStyle.Regular, GraphicsUnit.Point);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(522, 76);
+            label2.Location = new Point(597, 101);
             label2.Name = "label2";
-            label2.Size = new Size(584, 195);
+            label2.Size = new Size(731, 244);
             label2.TabIndex = 6;
             label2.Text = "Ether";
             label2.Click += label2_Click;
             // 
             // Accueil
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(1362, 663);
+            ClientSize = new Size(1557, 884);
             Controls.Add(label2);
             Controls.Add(button1);
             Controls.Add(button2);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Accueil";
             WindowState = FormWindowState.Maximized;
             Load += Form1_Load;
