@@ -1,11 +1,19 @@
 using jeu.Properties;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
+using System.Diagnostics.Metrics;
+using System.Drawing;
 using System.Resources;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace jeu
 {
+
     public partial class Form1 : Form
     {
+
 
         public Form1()
         {
@@ -16,6 +24,7 @@ namespace jeu
         Boolean zKey, dKey, qKey, sKey;
         List<PictureBox> enemy = new List<PictureBox> { };
         List<Label> enemyHP = new List<Label> { };
+        List<PictureBox> c = new List<PictureBox> { };
         System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
 
         public void inventoryTab()
@@ -155,9 +164,14 @@ namespace jeu
             }
             if (e.KeyCode == Keys.L)
             {
+
                 Control y = new Ennemy().Spawn(Player);
+                Control yHp = new Ennemy().Hp();
                 enemy.Add((PictureBox)y);
+                enemyHP.Add((Label)yHp);
                 Controls.Add(y);
+                Controls.Add(yHp);
+
 
             }
             if (e.KeyCode == Keys.R)
@@ -196,7 +210,7 @@ namespace jeu
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            timer1.Interval = (20); // 10 secs
+            timer1.Interval = (6);
             timer1.Tick += new EventHandler(timer_Tick);
             timer1.Start();
         }
@@ -205,16 +219,23 @@ namespace jeu
         {
             playerMove();
 
-            enemyBrain(enemy1);
-            if (enemy.Count > 0)
+            if (c.Count > 0)
             {
-                enemy.ForEach(l =>
+                for (global::System.Int32 i = 0; i < c.Count; i++)
                 {
-                    enemyBrain(l);
-                });
+                    takeCoin(c[i]);
+                }
 
             }
 
+            if (enemy.Count > 0)
+            {
+                for (global::System.Int32 i = 0; i < enemy.Count; i++)
+                {
+                    enemyBrain(enemy[i], enemyHP[i]);
+                }
+
+            }
 
         }
 
@@ -222,7 +243,7 @@ namespace jeu
         {
             int y = 0;
             int x = 0;
-            int velocity = 20;
+            int velocity = 5;
             if (zKey)
             {
                 y += -velocity;
@@ -243,21 +264,83 @@ namespace jeu
             Player.Location = new Point(Player.Location.X + x, Player.Location.Y + y);
         }
 
-        private void enemyBrain(PictureBox enemy1)
+        private void takeCoin(PictureBox coin)
         {
-            //Attaque
+            double d = Math.Sqrt(Math.Pow(Player.Location.X - coin.Location.X, 2) + Math.Pow(Player.Location.Y - coin.Location.Y, 2));
+
+            if (Math.Abs(d) < 100)
+            {
+                c.Remove(coin);
+                Controls.Remove(coin);
+                counter.Text = (Int32.Parse(counter.Text) + 1).ToString();
+            }
+        }
+        bool canAttack = true;
+        List<PictureBox> attacked = new List<PictureBox>();
+
+        private void enemyBrain(PictureBox enemy1, Label hp)
+        {
+            //Be attacked
             double d = Math.Sqrt(Math.Pow(Player.Location.X - enemy1.Location.X, 2) + Math.Pow(Player.Location.Y - enemy1.Location.Y, 2));
             if (Math.Abs(d) < 100)
             {
-                enemyHP1.Text = (Int32.Parse(enemyHP1.Text) - 5).ToString();
+                if (canAttack)
+                {
+                    canAttack = false;
+                    Player.Image = Resources.player_attack;
+                    hp.Text = (Int32.Parse(hp.Text) - 10).ToString();
+                    enemy1.Image = Resources.enemy_attacked;
+                    Task.Delay(100).ContinueWith(t => { enemy1.Image = Resources.enemy; Player.Image = Resources.player; });
+                    Task.Delay(500).ContinueWith(t => { canAttack = true; });
+                }
+            }
+
+            if (Math.Abs(d) < 50)
+            {
+                if (!attacked.Contains(enemy1))
+                {
+                    attacked.Add(enemy1);
+                    Player.Image = Resources.player_damaged;
+                    playerHP.Text = (Int32.Parse(playerHP.Text) - 5).ToString();
+                    Task.Delay(100).ContinueWith(t => { Player.Image = Resources.player; });
+                    Task.Delay(1000).ContinueWith(t => { attacked.Remove(enemy1); });
+                }
+            }
+
+            if (Int32.Parse(playerHP.Text) <= 0)
+            {
+                Label label1 = new Label();
+                timer1.Stop();
+                // 
+                // label1
+                // 
+                label1.AutoSize = false;
+                label1.Anchor = AnchorStyles.Top;
+                label1.TextAlign = ContentAlignment.MiddleCenter;
+                label1.Dock = DockStyle.Fill;
+                label1.BackColor = Color.Transparent;
+                label1.Font = new Font("Showcard Gothic", 36F, FontStyle.Regular, GraphicsUnit.Point);
+                label1.ForeColor = Color.Red;
+                label1.Location = new Point(303, 371);
+                label1.Name = "label1";
+                label1.Size = new Size(430, 89);
+                label1.TabIndex = 7;
+                label1.Text = "Game Over";
+
+                Controls.Add(label1);
             }
             //mort
-            if (Int32.Parse(enemyHP1.Text) <= 0)
+            if (Int32.Parse(hp.Text) <= 0)
             {
-                enemyHP1.Visible = false;
+                hp.Visible = false;
                 enemy1.Visible = false;
-                piece.Visible = true;
-                piece.Location = new Point(enemy1.Location.X, enemy1.Location.Y);
+                Control coins = new Ennemy().DropCoin(enemy1.Location.X, enemy1.Location.Y);
+                c.Add((PictureBox)coins);
+                Controls.Add(coins);
+                enemy.Remove(enemy1);
+                enemyHP.Remove(hp);
+                Controls.Remove(enemy1);
+                Controls.Remove(hp);
             }
             else
             //Déplacement enemy
@@ -267,22 +350,23 @@ namespace jeu
                 int dy = Player.Location.Y - enemy1.Location.Y;
                 int speedX = 0;
                 int speedY = 0;
+                int velocity = 3;
 
                 if (dx > 0)
                 {
-                    speedX = 3;
+                    speedX = velocity;
                 }
                 else
                 {
-                    speedX = -3;
+                    speedX = -velocity;
                 }
                 if (dy > 0)
                 {
-                    speedY = 3;
+                    speedY = velocity;
                 }
                 else
                 {
-                    speedY = -3;
+                    speedY = -velocity;
                 }
 
                 enemy1.Location = new Point(enemy1.Location.X + speedX, enemy1.Location.Y + speedY);
