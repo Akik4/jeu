@@ -23,6 +23,7 @@ namespace jeu
 
         Boolean zKey, dKey, qKey, sKey;
         Boolean waveCleared = true;
+        int wave = 0;
         List<PictureBox> enemy = new List<PictureBox> { };
         List<Label> enemyHP = new List<Label> { };
         List<PictureBox> c = new List<PictureBox> { };
@@ -166,7 +167,7 @@ namespace jeu
             if (e.KeyCode == Keys.L)
             {
 
-                Control y = new Ennemy().Spawn(Player);
+                Control y = new Ennemy().Spawn(Player.Location.X, Player.Location.Y);
                 Control yHp = new Ennemy().Hp();
                 enemy.Add((PictureBox)y);
                 enemyHP.Add((Label)yHp);
@@ -236,6 +237,24 @@ namespace jeu
                     enemyBrain(enemy[i], enemyHP[i]);
                 }
 
+            }
+
+            if (waveCleared)
+            {
+                waveCleared = false;
+
+                for (global::System.Int32 i = 0; i < 5; i++)
+                {
+                    int x = new Random().Next(1920);
+                    Control mob = new Ennemy().Spawn(x, 0);
+                    Control test = new Ennemy().Hp();
+                    enemy.Add((PictureBox)mob);
+                    enemyHP.Add((Label)test);
+                    Controls.Add(mob);
+                    Controls.Add(test);
+                }
+                wave += 1;
+                label2.Text = "Vague : " + wave.ToString();
             }
 
         }
@@ -342,6 +361,10 @@ namespace jeu
                 enemyHP.Remove(hp);
                 Controls.Remove(enemy1);
                 Controls.Remove(hp);
+                if (enemy.Count <= 0)
+                {
+                    waveCleared = true;
+                }
             }
             else
             //Déplacement enemy

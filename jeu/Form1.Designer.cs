@@ -59,6 +59,7 @@ namespace jeu
             pictureBox12 = new PictureBox();
             pictureBox13 = new PictureBox();
             playerHP = new Label();
+            label2 = new Label();
             ((System.ComponentModel.ISupportInitialize)Player).BeginInit();
             ((System.ComponentModel.ISupportInitialize)piece).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -403,6 +404,15 @@ namespace jeu
             playerHP.TabIndex = 6;
             playerHP.Text = "100";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(52, 15);
+            label2.Name = "label2";
+            label2.Size = new Size(85, 25);
+            label2.TabIndex = 25;
+            label2.Text = "Vague : 0";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -410,6 +420,7 @@ namespace jeu
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1142, 750);
+            Controls.Add(label2);
             Controls.Add(playerHP);
             Controls.Add(counter);
             Controls.Add(pictureBox13);
@@ -488,5 +499,6 @@ namespace jeu
         private PictureBox pictureBox11;
         private PictureBox pictureBox12;
         private PictureBox pictureBox13;
+        private Label label2;
     }
 }

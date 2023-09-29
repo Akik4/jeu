@@ -22,7 +22,7 @@ namespace jeu
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 
             enemya.BackColor = Color.Transparent;
-            enemya.Image = (Image)resources.GetObject("enemy1.Image");
+            enemya.Image = Resources.enemy;
             enemya.Location = new Point(x, y);
             enemya.Margin = new Padding(2);
             enemya.Name = "enemy1";
