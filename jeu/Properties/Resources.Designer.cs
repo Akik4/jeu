@@ -63,6 +63,16 @@ namespace jeu.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _5248390_200 {
+            get {
+                object obj = ResourceManager.GetObject("5248390-200", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Buy {
             get {
                 object obj = ResourceManager.GetObject("Buy", resourceCulture);

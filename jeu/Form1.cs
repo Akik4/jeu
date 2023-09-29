@@ -22,6 +22,7 @@ namespace jeu
         }
 
         Boolean zKey, dKey, qKey, sKey;
+        Boolean waveCleared = true;
         List<PictureBox> enemy = new List<PictureBox> { };
         List<Label> enemyHP = new List<Label> { };
         List<PictureBox> c = new List<PictureBox> { };

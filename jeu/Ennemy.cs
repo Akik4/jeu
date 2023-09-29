@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Numerics;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Label = System.Windows.Forms.Label;
 
 namespace jeu
 {
@@ -15,14 +17,13 @@ namespace jeu
         private PictureBox enemya = new PictureBox();
         private Label enemyHP = new Label();
         private PictureBox coin = new PictureBox();
-
-        public Control Spawn(PictureBox Player)
+        public Control Spawn(int x, int y)
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 
             enemya.BackColor = Color.Transparent;
             enemya.Image = (Image)resources.GetObject("enemy1.Image");
-            enemya.Location = new Point(Player.Location.X, Player.Location.Y);
+            enemya.Location = new Point(x, y);
             enemya.Margin = new Padding(2);
             enemya.Name = "enemy1";
             enemya.Size = new Size(53, 52);
