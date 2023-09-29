@@ -19,6 +19,7 @@ namespace jeu
         {
             InitializeComponent();
 
+
         }
 
         Boolean zKey, dKey, qKey, sKey;
@@ -53,7 +54,6 @@ namespace jeu
                 pictureBox10.Enabled = true;
                 pictureBox11.Visible = true;
                 pictureBox11.Enabled = true;
-
                 timer1.Stop();
                 return;
             }
@@ -80,6 +80,7 @@ namespace jeu
                 pictureBox10.Enabled = false;
                 pictureBox11.Visible = false;
                 pictureBox11.Enabled = false;
+                
             }
         }
         public void fonctionEchap()
@@ -118,7 +119,24 @@ namespace jeu
                 button5.Enabled = false;
                 pictureBox1.Visible = false;
                 pictureBox1.Enabled = false;
-
+                pictureBox14.Enabled = false;
+                pictureBox15.Enabled = false;
+                pictureBox16.Enabled = false;
+                pictureBox14.Visible = false;
+                pictureBox15.Visible = false;
+                pictureBox16.Visible = false;
+                label3.Enabled = false;
+                label4.Enabled = false;
+                label5.Enabled = false;
+                label6.Enabled = false;
+                label7.Enabled = false;
+                label8.Enabled = false;
+                label3.Visible = false;
+                label4.Visible = false;
+                label5.Visible = false;
+                label6.Visible = false;
+                label7.Visible = false;
+                label8.Visible = false;
                 return;
             }
 
@@ -132,6 +150,24 @@ namespace jeu
             button5.Enabled = true;
             pictureBox1.Visible = true;
             pictureBox1.Enabled = true;
+            pictureBox14.Enabled = true;
+            pictureBox15.Enabled = true;
+            pictureBox16.Enabled = true;
+            pictureBox14.Visible = true;
+            pictureBox15.Visible = true;
+            pictureBox16.Visible = true;
+            label3.Enabled = true;
+            label4.Enabled = true;
+            label5.Enabled = true;
+            label6.Enabled = true;
+            label7.Enabled = true;
+            label8.Enabled = true;
+            label3.Visible = true;
+            label4.Visible = true;
+            label5.Visible = true;
+            label6.Visible = true;
+            label7.Visible = true;
+            label8.Visible = true;
             timer1.Stop();
 
         }
@@ -450,11 +486,39 @@ namespace jeu
             button5.Enabled = false;
             pictureBox1.Visible = false;
             pictureBox1.Enabled = false;
+            label3.Enabled = false;
+            label4.Enabled = false;
+            label5.Enabled = false;
+            label6.Enabled = false;
+            label7.Enabled = false;
+            label8.Enabled = false;
+            label3.Visible = false;
+            label4.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            label7.Visible = false;
+            label8.Visible = false;
+            pictureBox14.Enabled = false;
+            pictureBox15.Enabled = false;
+            pictureBox16.Enabled = false;
+            pictureBox14.Visible = false;
+            pictureBox15.Visible = false;
+            pictureBox16.Visible = false;
 
             return;
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
         {
 
         }
