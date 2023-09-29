@@ -24,6 +24,9 @@ namespace jeu
 
         Boolean zKey, dKey, qKey, sKey;
         Boolean waveCleared = true;
+        int damage = 10;
+        int range = 100;
+        int cooldown = 500;
         int wave = 0;
         List<PictureBox> enemy = new List<PictureBox> { };
         List<Label> enemyHP = new List<Label> { };
@@ -80,7 +83,7 @@ namespace jeu
                 pictureBox10.Enabled = false;
                 pictureBox11.Visible = false;
                 pictureBox11.Enabled = false;
-                
+
             }
         }
         public void fonctionEchap()
@@ -196,32 +199,17 @@ namespace jeu
             {
                 fonctionEchap();
             }
-            if (e.KeyCode == Keys.P)
-            {
-                shop();
-            }
-            if (e.KeyCode == Keys.L)
-            {
-
-                Control y = new Ennemy().Spawn(Player.Location.X, Player.Location.Y);
-                Control yHp = new Ennemy().Hp();
-                enemy.Add((PictureBox)y);
-                enemyHP.Add((Label)yHp);
-                Controls.Add(y);
-                Controls.Add(yHp);
-
-
-            }
-            if (e.KeyCode == Keys.R)
-            {
-                enemy.ForEach(l =>
-                {
-                    l.Visible = false;
-                });
-            }
             if (e.KeyCode == Keys.I)
             {
                 inventoryTab();
+            }
+            if (e.KeyCode == Keys.M)
+            {
+                counter.Text = (Int32.Parse(counter.Text) + 1).ToString();
+            }
+            if (e.KeyCode == Keys.P)
+            {
+                shop();
             }
         }
 
@@ -338,16 +326,16 @@ namespace jeu
         {
             //Be attacked
             double d = Math.Sqrt(Math.Pow(Player.Location.X - enemy1.Location.X, 2) + Math.Pow(Player.Location.Y - enemy1.Location.Y, 2));
-            if (Math.Abs(d) < 100)
+            if (Math.Abs(d) < range)
             {
                 if (canAttack)
                 {
                     canAttack = false;
                     Player.Image = Resources.player_attack;
-                    hp.Text = (Int32.Parse(hp.Text) - 10).ToString();
+                    hp.Text = (Int32.Parse(hp.Text) - damage).ToString();
                     enemy1.Image = Resources.enemy_attacked;
                     Task.Delay(100).ContinueWith(t => { enemy1.Image = Resources.enemy; Player.Image = Resources.player; });
-                    Task.Delay(500).ContinueWith(t => { canAttack = true; });
+                    Task.Delay(cooldown).ContinueWith(t => { canAttack = true; });
                 }
             }
 
@@ -400,6 +388,7 @@ namespace jeu
                 if (enemy.Count <= 0)
                 {
                     waveCleared = true;
+                    shop();
                 }
             }
             else
@@ -468,11 +457,6 @@ namespace jeu
             this.Close();
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
             timer1.Start();
@@ -521,6 +505,35 @@ namespace jeu
         private void label6_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button3_Cooldown(object sender, EventArgs e)
+        {
+            if (Int32.Parse(counter.Text) >= 3)
+            {
+                counter.Text = (Int32.Parse(counter.Text) - 3).ToString();
+                cooldown = (int)(cooldown - (cooldown * 0.5));
+                shop();
+            }
+        }
+        private void button7_Range(object sender, EventArgs e)
+        {
+            if (Int32.Parse(counter.Text) >= 3)
+            {
+                counter.Text = (Int32.Parse(counter.Text) - 3).ToString();
+                range = (int)(range + (range * 0.5));
+                shop();
+            }
+        }
+
+        private void button5_Damage(object sender, EventArgs e)
+        {
+            if (Int32.Parse(counter.Text) >= 3)
+            {
+                counter.Text = (Int32.Parse(counter.Text) - 3).ToString();
+                damage = (int)(damage + (damage * 0.5));
+                shop();
+            }
         }
     }
 }
